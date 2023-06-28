@@ -1,0 +1,56 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Produtos",
+    "dateExported": "2023-06-06T22:50:22.032Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "d54f99a9-c811-4278-aec1-40995eecb80f",
+            "colId": "d4f1bfd7-480c-42a4-8773-24dea8ec80bf",
+            "containerId": "",
+            "name": "Listar Produtos",
+            "url": "localhost:3000/produtos",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-06-06T22:47:25.322Z",
+            "modified": "2023-06-06T22:47:35.974Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b12f70e8-03a6-4e2e-adc8-b3229f87aa0e",
+            "colId": "d4f1bfd7-480c-42a4-8773-24dea8ec80bf",
+            "containerId": "",
+            "name": "Inserir Produto",
+            "url": "localhost:3000/produtos",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-06-06T22:47:56.848Z",
+            "modified": "2023-06-06T22:48:39.901Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\":\"Produto 1\",\n  \"preco\": 30\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "aafabba0-b515-4e4c-aa4b-a97b1dfa2797",
+            "colId": "d4f1bfd7-480c-42a4-8773-24dea8ec80bf",
+            "containerId": "",
+            "name": "Buscar Por Id",
+            "url": "localhost:3000/produtos/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-06-06T22:49:14.912Z",
+            "modified": "2023-06-06T22:49:25.256Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
