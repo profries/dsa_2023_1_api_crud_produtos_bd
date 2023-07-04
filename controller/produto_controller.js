@@ -6,26 +6,38 @@ async function listar(req, res) {
     res.json(listaProdutos);
 }
 
-function buscarPorId(req,res) {
+async function buscarPorId(req,res) {
     const id = req.params.id;
-    try{
-        const produto = cadastroProdutos.buscarPorId(id);
+    const produto = await repositoryProdutos.buscarPorId(id);
+    if(produto){
         res.json(produto);
-    } catch (err) {
-        res.status(err.numero).json(err);
+    }
+    else {
+        res.status(404).json(
+            {
+                numero: 404,
+                msg: "Erro: Produto nao encontrado."
+            }
+        );
     }
 }
 
-function inserir(req, res) {
+async function inserir(req, res) {
     const produto = req.body;
-
-    try{
-        const produtoInserido = cadastroProdutos.inserir(produto);
+    if(produto && produto.nome && produto.preco) {
+        const produtoInserido = 
+            await repositoryProdutos.inserir(produto);
         res.status(201).json(produtoInserido);
     }
-    catch (err) {
-        res.status(err.numero).json(err);
+    else {
+        res.status(400).json(
+            {
+                numero: 400,
+                msg: "Erro: Os parametros de produto estao invalidos"
+            }
+        );
     }
+
 }
 
 function atualizar(req,res) {
