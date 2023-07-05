@@ -40,28 +40,51 @@ async function inserir(req, res) {
 
 }
 
-function atualizar(req,res) {
+async function atualizar(req,res) {
     const id = req.params.id;
     const produto = req.body;
-    try{
-        const produtoAtualizado = cadastroProdutos.atualizar(id,xproduto);
-        res.json(produtoAtualizado);
-    }
-    catch (err) {
-        res.status(err.numero).json(err);
-    }
 
+    if(produto && produto.nome && produto.preco)
+    {
+        const produtoAlterado = 
+            await repositoryProdutos.atualizar(id,produto);
+        if(produtoAlterado){
+            res.json(produtoAlterado);
+        }
+        else {
+            res.status(404).json(
+                {
+                    numero: 404,
+                    msg: "Erro: Produto nao encontrado."
+                }
+            );
+        }        
+    }
+    else {
+        res.status(400).json(
+            {
+                numero: 400,
+                msg: "Erro: Os parametros de produto estao invalidos"
+            }
+        );
+    }
 }
 
-function deletar(req,res) {
+async function deletar(req,res) {
     const id = req.params.id;
-    try{
-        const produtoDeletado = cadastroProdutos.deletar(id);
+    const produtoDeletado = 
+        await repositoryProdutos.deletar(id);
+    if(produtoDeletado){
         res.json(produtoDeletado);
     }
-    catch (err) {
-        res.status(err.numero).json(err);
-    }
+    else {
+        res.status(404).json(
+            {
+                numero: 404,
+                msg: "Erro: Produto nao encontrado."
+            }
+        );
+    }       
 }
 
 module.exports = {
